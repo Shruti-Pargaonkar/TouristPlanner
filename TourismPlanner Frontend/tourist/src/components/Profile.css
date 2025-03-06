@@ -1,0 +1,16 @@
+*
+{
+    font-family: cursive;
+}
+.ProfileForm
+{
+    border: 2px solid black;
+    line-height: 50px;
+    padding: 40px;
+    border-radius: 5px;
+    /* margin: 50%; */
+}
+h4
+{
+    padding-top: 50px;
+}
