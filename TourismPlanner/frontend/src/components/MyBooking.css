@@ -1,0 +1,27 @@
+.frmbook
+{
+    /* width: 50%; */
+    margin-top: 30px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 15px;
+    /* background: linear-gradient(to top, pink, 20%, cyan); */
+    
+}
+.lbl
+{
+    font-size: x-large;
+    padding: 6px;
+    /* color: palevioletred; */
+}
+.fontAwesome
+{
+    font-size: 30px;
+}
+.lbl1
+{
+    font-size: large;
+    /* padding-left: 10px; */
+    margin-left: 10px;
+    color: blue;
+}
