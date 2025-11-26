@@ -16,7 +16,9 @@ export default function FetchHotelBooking() {
     }, []);
 
     const fetchHotelBooking = async () => {
-        const result = await axios.get("http://localhost:8080/Book/all");
+        const result = await axios.get("http://localhost:8080/book/all",
+            {withCredentials: true}
+        );
         console.log(result.data);
         setBooking(result.data);
 

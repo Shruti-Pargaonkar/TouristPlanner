@@ -2,18 +2,20 @@ package com.app.service;
 
 import java.util.List;
 
-import com.app.entity.User;
+import com.app.entity.Users;
 
-public interface UserService {
+public interface IUserService {
 
 
-	User addUser(User user);
+	Users addUser(Users user);
 
-	User findUser(User user);
+	Users findUser(Users user);
 
-	List<User> getAllUser();
+	List<Users> getAllUser();
 
-	User getUserById(Long id);
+	Users getUserById(Long id);
 
-	User getUserByEmail(String email);
+	Users getUserByEmail(String email);
+
+//	Users findByEmail(String email);
 }

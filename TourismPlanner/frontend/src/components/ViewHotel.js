@@ -21,7 +21,9 @@ export default function ViewHotel() {
     });
 
     const viewHotel =async ()=>{
-        const result=await axios.get(`http://localhost:8080/hotel/HotelDetails/${id}`);
+        const result=await axios.get(`http://localhost:8080/hotel/HotelDetails/${id}`,
+            {withCredentials: true}
+        );
         setHotel(result.data);
     }
 

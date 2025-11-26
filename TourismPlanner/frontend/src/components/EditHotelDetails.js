@@ -18,7 +18,9 @@ const EditHotelDetails = () => {
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/hotel/HotelDetails/${id}`)
+        axios.get(`http://localhost:8080/hotel/HotelDetails/${id}`,
+            {withCredentials: true}
+        )
             .then(response => {
                 setHotel(response.data);
             })
@@ -36,7 +38,9 @@ const EditHotelDetails = () => {
         event.preventDefault();
         const validationErrors = validateInputs();
         if (Object.keys(validationErrors).length === 0) {
-            axios.put(`http://localhost:8080/hotel/update/${id}`, Hotel)
+            axios.put(`http://localhost:8080/hotel/update/${id}`, Hotel,
+                {withCredentials: true}
+            )
                 .then(response => {
                     console.log('Hotel details updated successfully:', response.data);
                     toast.success('Hotel details updated successfully');

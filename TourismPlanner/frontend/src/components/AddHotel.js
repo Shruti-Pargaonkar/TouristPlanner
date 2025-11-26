@@ -29,7 +29,9 @@ export default function AddHotel() {
         e.preventDefault();
         const validationErrors = validateInputs();
         if (Object.keys(validationErrors).length === 0) {
-            await axios.post(`http://localhost:8080/hotel/addhoteldetail`, hotel);
+            await axios.post(`http://localhost:8080/hotel/addhoteldetail`, hotel,
+                {withCredentials: true}
+            );
 
             toast.success("hotel added successfully.", {
                 onClose: () => {

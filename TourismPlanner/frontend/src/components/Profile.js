@@ -21,7 +21,9 @@ const Profile = () => {
         const fetchData = async () => {
             try {
                 if (email) {
-                    const response = await axios.get(`http://localhost:8080/api/v1/user/getuser/${email}`);
+                    const response = await axios.get(`http://localhost:8080/api/v1/user/getuser/${email}`,
+                        {withCredentials: true}
+                    );
                     setUser(response.data);
                     // navigate(`user`);
                     

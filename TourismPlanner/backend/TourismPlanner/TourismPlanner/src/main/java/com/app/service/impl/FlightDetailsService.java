@@ -1,4 +1,4 @@
-package com.app.service;
+package com.app.service.impl;
 
 
 import java.util.List;
@@ -11,9 +11,10 @@ import org.springframework.stereotype.Service;
 import com.app.Exception.FlightNotFoundException;
 import com.app.entity.FlightDetails;
 import com.app.repository.FlightDetailsRepository;
+import com.app.service.IFlightDetailsService;
 @Service
-public class FlightDetailsService implements FlightDetailsServiceinterface {
-	
+public class FlightDetailsService implements IFlightDetailsService {
+
 	@Autowired
 	private FlightDetailsRepository FlightDetailsRepository;
 
@@ -21,8 +22,14 @@ public class FlightDetailsService implements FlightDetailsServiceinterface {
 	public FlightDetails AddFlightDetails(FlightDetails flightDetails) {
 		FlightDetails addDetails=FlightDetailsRepository.save(flightDetails);
 		return addDetails;
-		
+
 	}
+	@Override
+	public List<FlightDetails> getFlightsBySourceAndDestination(String source, String destination, String date) {
+		return FlightDetailsRepository.findBySourceAndDestinationAndDate(source, destination, date);
+	}
+
+
 
 	@Override
 	public List<FlightDetails> getAllFlightDetails() {
@@ -38,20 +45,20 @@ public class FlightDetailsService implements FlightDetailsServiceinterface {
 
 	@Override
 	public void deleteFlightDetailsById(long flightId) {
-		FlightDetailsRepository.deleteById(flightId);		
+		FlightDetailsRepository.deleteById(flightId);
 	}
 
-	 public List<FlightDetails> getFlightsBySourceAndDestination(String source, String destination) {
-	        return FlightDetailsRepository.findBySourceAndDestination(source, destination);
-	    }
+//	 public List<FlightDetails> getFlightsBySourceAndDestination(String source, String destination) {
+//	        return FlightDetailsRepository.findBySourceAndDestination(source, destination);
+//	    }
 
 
-	public List<FlightDetails> getFlightsBySourceAndDestination(String source, String destination, String date) {
-		// TODO Auto-generated method stub
-		return FlightDetailsRepository.findBySourceAndDestination(source, destination);
-	}
+//	public List<FlightDetails> getFlightsBySourceAndDestination(String source, String destination, String date) {
+//		// TODO Auto-generated method stub
+//		return FlightDetailsRepository.findBySourceAndDestination(source, destination);
+//	}
 	
-	public FlightDetails FlightDetailsService(FlightDetails flightDetails) {
+	public FlightDetails updateFlightDetails(FlightDetails flightDetails) {
 		FlightDetails existingFlightDetails = FlightDetailsRepository.findById(flightDetails.getId()).get();
 		existingFlightDetails.setName(flightDetails.getName());
 		existingFlightDetails.setSource(flightDetails.getSource());
@@ -62,6 +69,8 @@ public class FlightDetailsService implements FlightDetailsServiceinterface {
 		FlightDetails updatedFlightDetails = FlightDetailsRepository.save(existingFlightDetails);
         return updatedFlightDetails;
 	}
+
+	
 
 	
 

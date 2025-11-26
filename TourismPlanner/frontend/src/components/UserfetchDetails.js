@@ -18,7 +18,9 @@ export default function UserfetchDetails() {
     }, []);
 
     const userfetchDetails = async () => {
-        const result = await axios.get("http://localhost:8080/registration/getalluser");
+        const result = await axios.get("http://localhost:8080/user/getalluser",
+            {withCredentials: true}
+        );
         console.log(result.data);
         setUser(result.data);
 

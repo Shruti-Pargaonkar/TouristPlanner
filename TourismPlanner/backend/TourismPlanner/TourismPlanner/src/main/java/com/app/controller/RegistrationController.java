@@ -13,16 +13,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.app.entity.User;
-import com.app.service.UserService;
+import com.app.entity.Users;
+import com.app.service.IUserService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("/registration")
+@RequestMapping("/user")
 public class RegistrationController {
 
 	@Autowired
-	private UserService userService;
+	private IUserService userService;
 	
 //	@Autowired
 //	private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -33,10 +33,10 @@ public class RegistrationController {
         return "register";
     }
 
-	@PostMapping
-	public ResponseEntity<Object> addUser(@RequestBody User user) {
+	@PostMapping("/register")
+	public ResponseEntity<String> addUser(@RequestBody Users user) {
 		try {
-			User newuser = userService.addUser(user);
+			userService.addUser(user);
 			return ResponseEntity.status(HttpStatus.CREATED).body("User registered successfully");
 
 		} catch (Exception e) {
@@ -46,13 +46,13 @@ public class RegistrationController {
 	}
 	
 	@GetMapping("/getalluser")	
-	public ResponseEntity<List<User>> getAllUser(){
-		List<User> listofUser=userService.getAllUser();
-		return new ResponseEntity<List<User>>(listofUser, HttpStatus.OK);
+	public ResponseEntity<List<Users>> getAllUser(){
+		List<Users> listofUser=userService.getAllUser();
+		return new ResponseEntity<List<Users>>(listofUser, HttpStatus.OK);
 	}
 	
 	@GetMapping("/{id}")
-    public User getUserById(@PathVariable Long id) {
+    public Users getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
     }
 	
@@ -63,7 +63,7 @@ public class RegistrationController {
 //		}
 	
 	@GetMapping("getuser/{email}")
-    public User getUserByEmail(@PathVariable String email) {
+    public Users getUserByEmail(@PathVariable String email) {
         return userService.getUserByEmail(email);
     }
 

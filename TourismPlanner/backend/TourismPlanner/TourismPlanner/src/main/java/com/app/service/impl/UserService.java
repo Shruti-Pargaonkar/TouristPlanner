@@ -1,4 +1,4 @@
-package com.app.service;
+package com.app.service.impl;
 
 import java.util.List;
 
@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.app.entity.User;
+import com.app.entity.Users;
 import com.app.repository.UserRepository;
+import com.app.service.IUserService;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserService implements IUserService {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -19,7 +20,7 @@ public class UserServiceImpl implements UserService {
     private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
-	public User addUser(User user) {
+	public Users addUser(Users user) {
 		// TODO Auto-generated method stub
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
@@ -27,10 +28,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findUser(User user) {
+	public Users findUser(Users user) {
 		
 		String email= user.getEmail();
-		User newUser= userRepository.findByEmail(email);
+		Users newUser= userRepository.findByEmail(email);
 		if(newUser!=null) {
 			if (passwordEncoder.matches(user.getPassword(), newUser.getPassword())) {
 				return newUser;
@@ -40,19 +41,21 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public List<User> getAllUser() {
+	public List<Users> getAllUser() {
 		return userRepository.findAll();
 	}
 
 	@Override
-	public User getUserById(Long id) {
+	public Users getUserById(Long id) {
 		 return userRepository.findById(id);
 	}
 
 	@Override
-	public User getUserByEmail(String email) {
+	public Users getUserByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
+
+	
 
 	
 	

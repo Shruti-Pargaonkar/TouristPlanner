@@ -1,4 +1,4 @@
-package com.app.service;
+package com.app.service.impl;
 
 import java.util.List;
 
@@ -9,12 +9,13 @@ import com.app.entity.FlightBooking;
 
 
 import com.app.repository.FlightBookingRepository;
+import com.app.service.IFlightBooking;
 
 import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-public class FlightBookingService implements FlightBookingInterface {
+public class FlightBookingService implements IFlightBooking {
 	
 	@Autowired
 	private FlightBookingRepository FlightBookingRepository;

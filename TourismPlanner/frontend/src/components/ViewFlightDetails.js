@@ -17,14 +17,21 @@ export default function ViewFlightDetails() {
     });
     const {id} = useParams();
 
-    useEffect(()=>{
-        viewFlightDetails();
-    });
+    useEffect(() => {
+    viewFlightDetails();
+}, [id]);
 
-    const viewFlightDetails =async ()=>{
-        const result=await axios.get(`http://localhost:8080/app/FlightDetails/${id}`);
+const viewFlightDetails = async () => {
+    try {
+        const result = await axios.get(`http://localhost:8080/FlightBooking/${id}`, {
+            withCredentials: true
+        });
         setFlightDetails(result.data);
+    } catch (error) {
+        console.error("Error fetching flight:", error);
     }
+};
+
 
     return (
         <div>

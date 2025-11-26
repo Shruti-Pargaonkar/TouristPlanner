@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,15 +20,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.app.entity.Booking;
 import com.app.entity.FlightBooking;
 import com.app.entity.FlightDetails;
-import com.app.service.FlightBookingInterface;
+import com.app.service.IFlightBooking;
 
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("FlightBooking")
+//@PreAuthorize("hasRole('ADMIN')")
 public class FlightBookingController {
 	@Autowired
-	private FlightBookingInterface FlightBookingInterface;
+	private IFlightBooking FlightBookingInterface;
 		
 	@PostMapping("/add")
 	public ResponseEntity<FlightBooking> AddFlightBooking(@RequestBody FlightBooking flightBooking)

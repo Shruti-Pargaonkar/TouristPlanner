@@ -15,7 +15,9 @@ export default function FetchHotel() {
 
     const fetchHotelDetails = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/hotel/getallhoteldetails");
+            const response = await axios.get("http://localhost:8080/hotel/getallhoteldetails",
+                {withCredentials: true}
+            );
             console.log(response.data);
             setHotels(response.data);
         } catch (error) {
@@ -27,7 +29,9 @@ export default function FetchHotel() {
         try {
             const confirmed = window.confirm("Are you sure you want to delete this hotel?");
             if (confirmed) {
-            await axios.delete(`http://localhost:8080/hotel/${hotelId}`);
+            await axios.delete(`http://localhost:8080/hotel/${hotelId}`,
+                {withCredentials: true}
+            );
             fetchHotelDetails(); 
             }// fetch updated hotel list after deletion
         } catch (error) {

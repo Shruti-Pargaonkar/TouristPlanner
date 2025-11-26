@@ -16,7 +16,9 @@ export default function FetchFlightDetails() {
     }, []);
 
     const fetchFlightDetails = async () => {
-        const result = await axios.get("http://localhost:8080/app/all");
+        const result = await axios.get("http://localhost:8080/FlightBooking/all",
+            {withCredentials: true}
+        );
         console.log(result.data);
         setFlightDetails(result.data);
 
@@ -25,7 +27,9 @@ export default function FetchFlightDetails() {
     const deleteFlightDetails = async(id)=>{
         const confirmed = window.confirm("Are you sure you want to delete this flight?");
     if (confirmed) {
-        await axios.delete(`http://localhost:8080/app/delete/${id}`)
+        await axios.delete(`http://localhost:8080/app/delete/${id}`,
+            {withCredentials: true}
+        )
         fetchFlightDetails()
     }
     }

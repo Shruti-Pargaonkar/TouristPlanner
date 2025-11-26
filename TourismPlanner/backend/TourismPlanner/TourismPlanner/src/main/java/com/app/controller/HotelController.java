@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -22,13 +23,14 @@ import com.app.Exception.HotelNotFoundException;
 import com.app.entity.FlightDetails;
 import com.app.entity.Hotel;
 import com.app.repository.HotelRepository;
-import com.app.service.FlightDetailsService;
-import com.app.service.HotelService;
 import com.app.service.IHotelService;
+import com.app.service.impl.FlightDetailsService;
+import com.app.service.impl.HotelService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/hotel")
+//@PreAuthorize("hasRole('ADMIN')")
 public class HotelController {
 
 @Autowired

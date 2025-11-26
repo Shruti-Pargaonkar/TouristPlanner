@@ -18,7 +18,9 @@ const SearchPage = () => {
     axios
       .get("http://localhost:8080/app/flights", {
         params: { source, destination, date },
-      })
+        withCredentials: true
+      },
+      )
       .then((res) => {
         setBooking(res.data);
       })
@@ -108,7 +110,10 @@ const SearchPage = () => {
     <div className="col">
       <input 
       className={`form-control ${errors.date ? 'is-invalid' : date ? 'is-valid' : ''}`}
-      type="date" placeholder="Start Date" name="start" onChange={(e) => setDate(e.target.value)} />
+      type="date" 
+      placeholder="Start Date" 
+      name="start" 
+      onChange={(e) => setDate(e.target.value)} />
       {errors.date && <div className="invalid-feedback">{errors.date}</div>}
     </div>
   </div>

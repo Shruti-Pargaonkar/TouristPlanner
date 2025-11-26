@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,18 +21,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.Exception.FlightNotFoundException;
 import com.app.entity.FlightDetails;
-import com.app.service.FlightDetailsService;
-import com.app.service.FlightDetailsServiceinterface;
+import com.app.service.IFlightDetailsService;
+import com.app.service.impl.FlightDetailsService;
 import com.app.repository.FlightDetailsRepository;
 
 	
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@RequestMapping("app")
+@RequestMapping("/app")
+//@PreAuthorize("hasRole('ADMIN')")
 public class FlightDetailsController {
 	
 	@Autowired
-	private FlightDetailsServiceinterface FlightDetailsServiceinterface;
+	private IFlightDetailsService FlightDetailsServiceinterface;
 		
 	@PostMapping("/test3")
 	public ResponseEntity<FlightDetails> AddFlightDetails(@RequestBody FlightDetails flightDetails)
@@ -69,18 +71,21 @@ public class FlightDetailsController {
 	
 	
 
-	@Autowired
-	private FlightDetailsService FlightDetailsService;
+//	@Autowired
+//	private FlightDetailsService FlightDetailsService;
 
-	 @PutMapping("/update/{id}")
-	    public ResponseEntity<FlightDetails> FlightDetailsService(@PathVariable("id") Long Id,
-	                                           @RequestBody FlightDetails FlightDetails){
-		 FlightDetails.setId(Id);
-		 FlightDetails updatedUser = FlightDetailsService.FlightDetailsService(FlightDetails);
-	        return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-	    }
+	@PutMapping("/update/{id}")
+	public ResponseEntity<FlightDetails> updateFlightDetails(
+	        @PathVariable("id") Long id,
+	        @RequestBody FlightDetails flightDetails) {
 
-	
+	    flightDetails.setId(id);
+
+	    FlightDetails updatedFlight = FlightDetailsServiceinterface.updateFlightDetails(flightDetails);
+
+	    return new ResponseEntity<>(updatedFlight, HttpStatus.OK);
+	}
+
 
 	    @GetMapping("/flights")
 	    public ResponseEntity<List<FlightDetails>> getFlights(

@@ -31,7 +31,9 @@ export default function FlightBook()
     },[]);
 
     const viewFlightDetails =async ()=>{
-        const result=await axios.get(`http://localhost:8080/app/FlightDetails/${id}`);
+        const result=await axios.get(`http://localhost:8080/app/FlightDetails/${id}`,
+            {withCredentials: true}
+        );
         setFlightDetails(result.data);
     }
 
@@ -60,13 +62,6 @@ export default function FlightBook()
         toast.error("Error booking flight");
     }
 }
-    
-
-    
-        
-       
-    
-    
         return <div >
             
             <div className="backGround">

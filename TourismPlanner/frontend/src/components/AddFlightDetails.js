@@ -52,7 +52,8 @@ const AddFlightDetails = () => {
     e.preventDefault();
     const validationErrors = validateInputs();
     if (Object.keys(validationErrors).length === 0) {
-      await axios.post(`http://localhost:8080/app/test3`, flightDetails);
+      await axios.post(`http://localhost:8080/FlightBooking/add`, flightDetails,
+        {withCredentials: true});
       
       toast.success("Flight added successfully.", {
         onClose: () => {

@@ -1,4 +1,4 @@
-package com.app.service;
+package com.app.service.impl;
 
 import java.util.List;
 
@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 import com.app.entity.Booking;
 import com.app.entity.FlightDetails;
 import com.app.repository.BookingRepository;
+import com.app.service.IBookingService;
 
 @Service
-public class BookingService implements BookingServiceInterface{
+public class BookingService implements IBookingService{
 
 	@Autowired
 	private BookingRepository BookingRepository;

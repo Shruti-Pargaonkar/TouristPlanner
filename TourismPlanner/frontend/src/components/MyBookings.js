@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import {  useNavigate } from 'react-router-dom';
 import Navigation from './Navigation';
 
 const MyBookings = () => {
@@ -23,10 +22,14 @@ const MyBookings = () => {
     try {
       setLoading(true);
       
-      const response = await axios.get(`http://localhost:8080/FlightBooking/myFlightBookings?userId=${userId}`);
+      const response = await axios.get(`http://localhost:8080/FlightBooking/myFlightBookings?userId=${userId}`,
+        {withCredentials: true}
+      );
       setBooking(response.data);
 
-      const hotelResponse = await axios.get(`http://localhost:8080/Book/myHotelBookings?userId=${userId}`);
+      const hotelResponse = await axios.get(`http://localhost:8080/book/myHotelBookings?userId=${userId}`,
+        {withCredentials: true}
+      );
       setHotelBookings(hotelResponse.data);
 
       setLoading(false);
@@ -45,7 +48,9 @@ const MyBookings = () => {
 
   const handleCancelBooking = async (bookingId) => {
     try {
-      await axios.delete(`http://localhost:8000/FlightBooking/${bookingId}`);
+      await axios.delete(`http://localhost:8000/FlightBooking/${bookingId}`,
+        {withCredentials: true}
+      );
       setCanceledBookingId(bookingId); 
     } catch (error) {
       console.error('Error while canceling booking:', error);

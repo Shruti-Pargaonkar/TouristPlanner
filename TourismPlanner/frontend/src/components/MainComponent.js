@@ -15,17 +15,23 @@ const MainComponent = () => {
   useEffect(() => {
     // Fetch data for user, flight booking, and hotel booking
     const fetchUserData = async () => {
-      const response = await axios.get(`http://localhost:8080/api/v1/user/${id}`);
+      const response = await axios.get(`http://localhost:8080/api/v1/user/${id}`,
+        {withCredentials: true}
+      );
       setUserData(response.data);
     };
 
     const fetchFlightData = async () => {
-      const response = await axios.get(`http://localhost:8080/app/FlightDetails/${id}`);
+      const response = await axios.get(`http://localhost:8080/app/FlightDetails/${id}`,
+        {withCredentials: true}
+      );
       setFlightData(response.data);
     };
 
     const fetchHotelData = async () => {
-      const response = await axios.get(`http://localhost:8080/hotel/HotelDetails/${id}`);
+      const response = await axios.get(`http://localhost:8080/hotel/HotelDetails/${id}`,
+        {withCredentials: true}
+      );
       setHotelData(response.data);
     };
 

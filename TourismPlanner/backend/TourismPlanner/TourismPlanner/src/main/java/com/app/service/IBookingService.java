@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.app.entity.Booking;
 
-public interface BookingServiceInterface {
+public interface IBookingService {
 
 	Booking AddBooking(Booking booking);
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.app.entity.FlightBooking;
 
-public interface FlightBookingInterface {
+public interface IFlightBooking {
 
 	FlightBooking AddFlightBooking(FlightBooking flightBooking);
 
@@ -15,8 +15,6 @@ public interface FlightBookingInterface {
 	void deleteFlightBookingById(int flightId);
 
 	List<FlightBooking> getMyBookings(int userId);
-
-	
 
 	
 

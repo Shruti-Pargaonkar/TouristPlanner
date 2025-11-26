@@ -2,14 +2,13 @@ package com.app.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.app.entity.User;
+import com.app.entity.Users;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<Users, Integer> {
 
-	User findByEmail(String email);
+	Users findByEmail(String email);
 
-	User findById(Long id);
+	Users findById(Long id);
 
-	;
 
 }

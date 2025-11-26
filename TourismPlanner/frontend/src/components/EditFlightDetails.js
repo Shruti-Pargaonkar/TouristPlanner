@@ -18,7 +18,9 @@ const EditFlightDetails = () => {
     const [errors, setErrors] = useState({});
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/app/FlightDetails/${id}`)
+        axios.get(`http://localhost:8080/app/FlightDetails/${id}`,
+            {withCredentials: true}
+        )
             .then(response => {
                 setFlightDetails(response.data);
             })
@@ -36,7 +38,9 @@ const EditFlightDetails = () => {
         event.preventDefault();
         const validationErrors = validateInputs();
         if (Object.keys(validationErrors).length === 0) {
-            axios.put(`http://localhost:8080/app/update/${id}`, flightDetails)
+            axios.put(`http://localhost:8080/app/update/${id}`, flightDetails,
+                {withCredentials: true}
+            )
                 .then(response => {
                     console.log('Flight details updated successfully:', response.data);
                     toast.success('Flight details updated successfully');

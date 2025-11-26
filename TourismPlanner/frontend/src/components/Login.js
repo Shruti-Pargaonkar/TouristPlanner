@@ -29,11 +29,15 @@ const Login = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:8080/login', {
+      const response = await axios.post('http://localhost:8080/user/login', {
         email,
         password
-      });
+      },
+    {
+      withCredentials: true
+    });
 
+    
       if (response.status === 200 && response.data.role === 'ADMIN') {
         // Redirect to admin dashboard
         toast.success("Admin Login successful", {
@@ -41,7 +45,7 @@ const Login = () => {
           onClose: () => {
             navigate('/admin');
           }
-        });
+        }); 
       } else if (response.status === 200 && response.data.role === 'USER') {
         // Redirect to user dashboard
         sessionStorage.setItem('userId', response.data.id);

@@ -8,7 +8,8 @@ import com.app.entity.FlightBooking;
 import com.app.entity.FlightDetails;
 
 public interface FlightDetailsRepository extends JpaRepository<FlightDetails,Long>{
-	List<FlightDetails> findBySourceAndDestination(String source, String destination);
+//	List<FlightDetails> findBySourceAndDestination(String source, String destination);
+	List<FlightDetails> findBySourceAndDestinationAndDate(String source, String destination, String date);
 
 	
 
