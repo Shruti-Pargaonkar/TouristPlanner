@@ -1,4 +1,4 @@
-                                                                                 TouristPlanner
+# TouristPlanner
 
 DESCRIPTION: 
 TouristPlanner is a web-based application that helps users plan trips by exploring destinations, managing itineraries, and storing travel-related information in a structured way.
